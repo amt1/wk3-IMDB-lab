@@ -40,4 +40,10 @@ class Casting
       casting_list = SqlRunner.run(sql)
       return map_my_castings(casting_list)
     end
+
+    def update(options)
+      sql = 'UPDATE castings SET (movie_id, performer_id, fee) = ($1, $2, $3) WHERE id = $4;'
+         values = [options['movie_id'], options['performer_id'], options['fee'], @id]
+        SqlRunner.run(sql, values)
+    end
 end # end class

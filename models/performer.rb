@@ -40,4 +40,10 @@ class Performer
         performer_list = SqlRunner.run(sql)
         return map_my_performers(performer_list)
       end
+
+      def update(options)
+        sql = 'UPDATE performers SET (first_name, last_name) = ($1, $2) WHERE id = $3;'
+           values = [options['first_name'], options['last_name'], @id]
+          SqlRunner.run(sql, values)
+      end
 end

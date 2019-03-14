@@ -40,4 +40,10 @@ end
     return map_my_movies(movie_list)
   end
 
+  def update(options)
+    sql = 'UPDATE movies SET (title, genre) = ($1, $2) WHERE id = $3;'
+       values = [options['title'], options['genre'], @id]
+      SqlRunner.run(sql, values)
+  end
+
 end # end class

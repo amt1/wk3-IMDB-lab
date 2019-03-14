@@ -14,9 +14,11 @@ movie1.save
 movie2.save
 movie3.save
 
-p Movie.list_all
+movie1.update({'title' => 'The Godfather', 'genre' => 'Romantic Comedy'})
 
-movie1.delete
+# p Movie.list_all
+
+# movie1.delete
 
 performer1 = Performer.new({'first_name' => 'David', 'last_name' => 'Boyle'})
 performer2 = Performer.new({'first_name' => 'Marlon', 'last_name' => 'Brando'})
@@ -26,16 +28,22 @@ performer1.save
 performer2.save
 performer3.save
 
-p Performer.list_all
+performer3.update({'first_name' => 'George', 'last_name' => 'SmileyDentist'})
+# p Performer.list_all
 
-performer2.delete
+# performer2.delete
 
 casting1 = Casting.new({'movie_id' => movie2.id, 'performer_id' => performer1.id, 'fee' => '1000000'})
 casting2 = Casting.new({'movie_id' => movie3.id, 'performer_id' => performer1.id, 'fee' => '10000000'})
 
 casting1.save
 casting2.save
+# casting2.fee = casting2.fee **2
+# casting2.update
+# new_fee = casting2.fee **2
+casting2.update({'fee' => '1'})
+casting2.update({'movie_id' => movie1.id, 'performer_id'=> casting2.performer_id, 'fee'=> '45629467'})
 
 p Casting.list_all
 
-casting1.delete
+# casting1.delete
