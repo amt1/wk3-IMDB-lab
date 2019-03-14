@@ -14,6 +14,8 @@ movie1.save
 movie2.save
 movie3.save
 
+p Movie.list_all
+
 movie1.delete
 
 performer1 = Performer.new({'first_name' => 'David', 'last_name' => 'Boyle'})
@@ -23,6 +25,9 @@ performer3 = Performer.new({'first_name' => 'George', 'last_name' => 'Clooney'})
 performer1.save
 performer2.save
 performer3.save
+
+p Performer.list_all
+
 performer2.delete
 
 casting1 = Casting.new({'movie_id' => movie2.id, 'performer_id' => performer1.id, 'fee' => '1000000'})
@@ -30,4 +35,7 @@ casting2 = Casting.new({'movie_id' => movie3.id, 'performer_id' => performer1.id
 
 casting1.save
 casting2.save
+
+p Casting.list_all
+
 casting1.delete

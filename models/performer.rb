@@ -31,4 +31,13 @@ class Performer
       SqlRunner.run(sql, values)
     end
 
+      def self.map_my_performers(performer_hash)
+        return performer_hash.map { |performer| Performer.new(performer)  }
+      end
+
+      def self.list_all
+        sql = "SELECT * FROM performers"
+        performer_list = SqlRunner.run(sql)
+        return map_my_performers(performer_list)
+      end
 end

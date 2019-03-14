@@ -30,4 +30,14 @@ end
     SqlRunner.run(sql, values)
   end
 
+  def self.map_my_movies(movie_hash)
+    return movie_hash.map { |movie| Movie.new(movie)  }
+  end
+
+  def self.list_all
+    sql = "SELECT * FROM movies"
+    movie_list = SqlRunner.run(sql)
+    return map_my_movies(movie_list)
+  end
+
 end # end class
