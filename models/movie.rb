@@ -3,18 +3,19 @@ require_relative('./performer.rb')
 
 class Movie
 
-attr_accessor :title, :genre
+attr_accessor :title, :genre, :budget
 attr_reader :id
 
 def initialize(options)
   @title = options['title']
   @genre = options['genre']
+  @budget = options['budget']
   @id = options['id'].to_i if options['id']
 end
 
 def save
-  sql = "INSERT INTO movies (title, genre) VALUES ($1, $2) RETURNING id;"
-  values = [@title, @genre]
+  sql = "INSERT INTO movies (title, genre, budget) VALUES ($1, $2, $3) RETURNING id;"
+  values = [@title, @genre, @budget]
   returned_id = SqlRunner.run(sql, values).first['id']
   @id = returned_id.to_i
 end
@@ -42,8 +43,8 @@ end
   end
 
   def update(options)
-    sql = 'UPDATE movies SET (title, genre) = ($1, $2) WHERE id = $3;'
-       values = [options['title'], options['genre'], @id]
+    sql = 'UPDATE movies SET (title, genre, budget) = ($1, $2, $3) WHERE id = $4;'
+       values = [options['title'], options['genre'], options['budget'], @id]
       SqlRunner.run(sql, values)
   end
 

@@ -6,15 +6,15 @@ Casting.delete_all
 Movie.delete_all
 Performer.delete_all
 
-movie1 = Movie.new({'title' => 'The Godfather', 'genre' => 'Drama'})
-movie2 = Movie.new({'title' => 'Alien', 'genre' => 'Horror'})
-movie3 = Movie.new({'title' => 'Being John Malkovich', 'genre' => 'Drama'})
+movie1 = Movie.new({'title' => 'The Godfather', 'genre' => 'Drama', 'budget' => '20000000'})
+movie2 = Movie.new({'title' => 'Alien', 'genre' => 'Horror', 'budget' => '99999999'})
+movie3 = Movie.new({'title' => 'Being John Malkovich', 'genre' => 'Drama', 'budget' => '10000'})
 
 movie1.save
 movie2.save
 movie3.save
 
-movie1.update({'title' => 'The Godfather', 'genre' => 'Romantic Comedy'})
+movie1.update({'title' => 'The Godfather', 'genre' => 'Romantic Comedy', 'budget' => movie1.budget})
 # p Movie.list_all
 
 # movie1.delete
