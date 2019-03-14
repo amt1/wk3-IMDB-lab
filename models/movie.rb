@@ -57,4 +57,21 @@ end
     performer_hash = SqlRunner.run(sql, values)
     return Performer.map_my_performers(performer_hash)
       end
+
+# extensions from class: ruby method, but sql can do it too
+
+def remaining_budget()
+  castings = self.castings #  (function that lists castings for movies)
+  casting_fees = castings.map { |casting|  casting.fee }
+  combined_fees = casting_fees.sum
+  return @budget - combined_fees
+end
+
+# sql way:
+def remaining_budget_2
+sql = "SELECT SUM(castings.fee) FROM movies
+INNER JOIN castings on movies.id = castings.movie_id WHERE movies.id = $1"
+better_sql = "SELECT SUM(castings.fee) FROM castings WHERE movie_id = $1"
+values = [@id]
+return SqlRunner.run(better_sql, values).first["sum"].to_i
 end # end class
