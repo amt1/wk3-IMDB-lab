@@ -19,4 +19,16 @@ class Performer
     @id = returned_id.to_i
   end
 
+  def self.delete_all
+    sql = "DELETE FROM performers"
+    SqlRunner.run(sql)
+  end
+
+
+    def delete
+      sql = "DELETE FROM performers WHERE id = $1;"
+      values = [@id]
+      SqlRunner.run(sql, values)
+    end
+
 end
