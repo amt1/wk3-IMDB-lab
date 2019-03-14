@@ -46,4 +46,5 @@ class Casting
          values = [options['movie_id'], options['performer_id'], options['fee'], @id]
         SqlRunner.run(sql, values)
     end
+
 end # end class

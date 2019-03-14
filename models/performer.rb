@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner.rb')
+require_relative('./movie.rb')
 
 
 class Performer
@@ -46,4 +47,14 @@ class Performer
            values = [options['first_name'], options['last_name'], @id]
           SqlRunner.run(sql, values)
       end
+
+      def list_movies
+        sql="SELECT movies.* FROM movies
+  INNER JOIN castings ON movies.id = movie_id
+  WHERE performer_id = $1;"
+    values=[@id]
+    movie_hash = SqlRunner.run(sql, values)
+    return Movie.map_my_movies(movie_hash)
+      end
+
 end
